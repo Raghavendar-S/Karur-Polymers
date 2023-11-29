@@ -1,0 +1,39 @@
+.card {
+  width: 100%;
+  padding: 2rem;
+  border-radius: 15px;
+  line-height: 1.75;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.main_container {
+  display: flex;
+  width: 90vw;
+  align-items: center;
+  margin: 3rem auto;
+  justify-content: center;
+}
+
+.product_card{
+  display: flex;
+  gap: 3rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.custom_img{
+  width: 30vh;
+  border-radius: 15px;
+}
+
+.text-justify{
+  text-align: justify;
+}
+
+@media screen and (max-width: 850px) {
+  .product_card{
+    gap: 1rem;
+    flex-direction: column;
+  }
+}
