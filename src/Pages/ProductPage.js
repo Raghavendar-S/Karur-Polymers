@@ -1,4 +1,3 @@
-import React from "react";
 import Layout from "../Components/Layout/Layout";
 import { ProductData } from "../Repository/SharedData";
 import { useNavigate } from "react-router-dom";
@@ -6,7 +5,6 @@ import './ProductPage.css';
 
 export default function ProductPage() {
   const navigate = useNavigate();
-  
   return (
     <Layout>
       <div className="product_container">
@@ -33,6 +31,13 @@ export default function ProductPage() {
                   >
                     <i className="ri-more-2-fill" /> More Details
                   </button>
+                    <button
+                        className="btn"
+                        onClick={() => navigate(`/product/${p.id}`)}
+                        id="create_btn"
+                      >
+                        <i className="ri-shopping-cart-2-fill" /> Add to Cart
+                      </button>
               </div>
             </div>
             ))}
