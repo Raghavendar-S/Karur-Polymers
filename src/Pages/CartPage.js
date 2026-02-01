@@ -197,7 +197,7 @@ const CartPage = () => {
       toast.error("Failed to clear cart");
       setConfirmOpen(false);
     }
-  }; 
+  };
 
   // customer fields and validation
   const [customerName, setCustomerName] = useState(user.customer?.name || "");
@@ -448,8 +448,6 @@ const CartPage = () => {
                 </Button>
               </DialogActions>
             </Dialog>
-
-
           </section>
         </div>
         <div className="cart_product_container">

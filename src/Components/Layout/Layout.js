@@ -1,16 +1,14 @@
-import Footer from './Footer';
-import { Navbar } from './Navbar';
+import Footer from "./Footer";
+import { Navbar } from "./Navbar";
 
-const Layout = ({children}) => {
+const Layout = ({ children }) => {
   return (
     <div>
-        <Navbar/>
-        <main style={{minHeight: "100vh"}}>
-            {children}
-        </main>
-        <Footer/>
+      <Navbar />
+      <main style={{ minHeight: "100vh" }}>{children}</main>
+      <Footer />
     </div>
   );
-}
+};
 
 export default Layout;

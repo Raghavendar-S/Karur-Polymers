@@ -15,24 +15,24 @@
   justify-content: center;
 }
 
-.product_card{
+.product_card {
   display: flex;
   gap: 3rem;
   justify-content: center;
   align-items: center;
 }
 
-.custom_img{
+.custom_img {
   width: 30vh;
   border-radius: 15px;
 }
 
-.text-justify{
+.text-justify {
   text-align: justify;
 }
 
 @media screen and (max-width: 850px) {
-  .product_card{
+  .product_card {
     gap: 1rem;
     flex-direction: column;
   }

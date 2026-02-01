@@ -12,7 +12,10 @@ const UserProvider = ({ children }) => {
       const data = localStorage.getItem("cart");
       if (data) {
         const parsed = JSON.parse(data);
-        setUser((prev) => ({ ...prev, cart: Array.isArray(parsed) ? parsed : parsed.cart || [] }));
+        setUser((prev) => ({
+          ...prev,
+          cart: Array.isArray(parsed) ? parsed : parsed.cart || [],
+        }));
       }
       const customerData = localStorage.getItem("customer");
       if (customerData) {
@@ -37,14 +40,19 @@ const UserProvider = ({ children }) => {
     }
 
     try {
-      if (user.customer) localStorage.setItem("customer", JSON.stringify(user.customer));
+      if (user.customer)
+        localStorage.setItem("customer", JSON.stringify(user.customer));
       else localStorage.removeItem("customer");
     } catch (err) {
       console.error("Failed to save customer to localStorage", err);
     }
   }, [user.cart, user.customer, initialized]);
 
-  return <UserContext.Provider value={{ user, setUser, initialized }}>{children}</UserContext.Provider>;
+  return (
+    <UserContext.Provider value={{ user, setUser, initialized }}>
+      {children}
+    </UserContext.Provider>
+  );
 };
 
 const useUser = () => useContext(UserContext);

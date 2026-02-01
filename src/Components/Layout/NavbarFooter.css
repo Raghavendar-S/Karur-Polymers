@@ -36,7 +36,6 @@
   color: #fff;
 }
 
-
 #menu-bar {
   display: none;
 }
@@ -129,10 +128,10 @@
 }
 
 @media (max-width: 1010px) {
-  .navbar_header{
+  .navbar_header {
     padding: 20px;
   }
-  .navbar_header .logo{
+  .navbar_header .logo {
     width: 35vh;
     padding: 10px 0px;
   }
@@ -160,7 +159,7 @@
   #menu-bar:checked ~ .navbar {
     display: initial;
   }
-  .footer__nav{
+  .footer__nav {
     justify-content: center;
   }
 }

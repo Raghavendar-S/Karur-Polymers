@@ -2,9 +2,9 @@
   width: 15rem;
   margin: 1rem 1.5rem;
   border: 1px solid #ccc;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); 
-  border-radius: 10px; 
-  overflow: hidden; 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 .custom-card-body {
@@ -21,7 +21,7 @@
   color: #555;
 }
 
-.btn{
+.btn {
   width: 200px;
   margin-top: 1.5rem;
   padding: 0.75rem 2rem;
@@ -35,23 +35,23 @@
   text-align: center;
 }
 
-#details_btn{
+#details_btn {
   background-color: orange;
   color: #000;
 }
 
-#details_btn:hover{
+#details_btn:hover {
   background-color: rgb(205, 133, 0);
 }
 
-.product_list{
+.product_list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   text-align: center;
 }
 
-.product_container{
+.product_container {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -60,17 +60,17 @@
   padding: 3rem;
 }
 
-.product_card_list{
+.product_card_list {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
   padding: 3rem;
 }
 
-@media (max-width : 800px){
-  .product_container{
+@media (max-width: 800px) {
+  .product_container {
     padding: 1rem;
   }
-  .product_card_list{
+  .product_card_list {
     padding: 1rem;
   }
 }
