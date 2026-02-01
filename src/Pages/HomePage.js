@@ -1,5 +1,5 @@
 import "./HomePage.css";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import ScrollReveal from "scrollreveal";
 import Layout from "../Components/Layout/Layout";
 import { useNavigate } from "react-router-dom";
