@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import Layout from "../Components/Layout/Layout";
 import { useParams } from "react-router-dom";
 import { ProductData } from "../Repository/SharedData";
@@ -10,25 +10,71 @@ import Stack from "@mui/material/Stack";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
+import { useUser } from "../Context/UserProvider";
+import toast from "react-hot-toast";
+import {WIDTH_OPTIONS, COLOR_OPTIONS, LENGTH_OPTIONS} from "../Repository/OptionData";
 
 export default function ProductDetails() {
   const { id } = useParams();
   const product = ProductData.find((p) => p.id === parseInt(id, 10));
-  const [selectedInchTape, setSelectedInchTape] = useState("1_inch");
-  const [selectedColor, setSelectedColor] = useState("red");
+  const [selectedInchTape, setSelectedInchTape] = useState(
+    WIDTH_OPTIONS[0].value
+  );
+  const [selectedColor, setSelectedColor] = useState(null);
+  const [selectedLength, setSelectedLength] = useState(LENGTH_OPTIONS[0].value);
+  const [, setUser] = useUser();
+
+  const isColorProduct = product && product.name === "Color tape";
+
+  useEffect(() => {
+    if (product && product.name === "Color tape") {
+      setSelectedColor(COLOR_OPTIONS[0].value);
+    } else {
+      setSelectedColor(null);
+    }
+  }, [product]);
+
+  if (!product) {
+    return (
+      <Layout>
+        <div className="main_container card">
+          <p>Product not found</p>
+        </div>
+      </Layout>
+    );
+  }
 
   const calculatePieces = (inchTape) => {
-    switch (inchTape) {
-      case "1_inch":
-        return 144;
-      case "2_inch":
-        return 72;
-      case "3_inch":
-        return 48;
-      case "4_inch":
-        return 36;
-      default:
-        return 0;
+    const found = WIDTH_OPTIONS.find((w) => w.value === inchTape);
+    return found ? found.pieces : 0;
+  };
+
+  const handleAddToCart = (product) => {
+    const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+
+    const itemId = product._id || product.id;
+    const colorForId = isColorProduct ? selectedColor : "no_color";
+    const cartItemId = `${itemId}_${colorForId}_${selectedInchTape}_${selectedLength}`;
+
+    const cartItem = {
+      ...product,
+      _id: itemId,
+      cartItemId,
+      selectedColor: isColorProduct ? selectedColor : null,
+      selectedInchTape,
+      selectedLength,
+      quantity: 1,
+    };
+
+    const existingProduct = cart.find((item) => item.cartItemId === cartItemId);
+
+    if (!existingProduct) {
+      cart.push(cartItem);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      setUser((prev) => ({ ...prev, cart }));
+      toast.success("Item added to cart");
+    } else {
+      toast.error("Same configuration already added in the cart");
     }
   };
 
@@ -59,45 +105,43 @@ export default function ProductDetails() {
             <Stack spacing={2} alignItems="center">
               {product.name === "Color tape" && (
                 <FormControl>
-                  <FormLabel id="tape-color" style={{ color: "#000", textAlign:"center", fontFamily:"inherit", fontWeight:"bold" }}>
+                  <FormLabel
+                    id="tape-color"
+                    style={{
+                      color: "#000",
+                      textAlign: "center",
+                      fontFamily: "inherit",
+                      fontWeight: "bold",
+                    }}
+                  >
                     Tape Color
                   </FormLabel>
                   <RadioGroup
                     row
-                    
                     value={selectedColor}
                     onChange={(event) => setSelectedColor(event.target.value)}
                   >
-                    <FormControlLabel
-                      value="red"
-                      control={<Radio />}
-                      label="Red"
-                    />
-                    <FormControlLabel
-                      value="blue"
-                      control={<Radio />}
-                      label="Blue"
-                    />
-                    <FormControlLabel
-                      value="green"
-                      control={<Radio />}
-                      label="Green"
-                    />
-                    <FormControlLabel
-                      value="yellow"
-                      control={<Radio />}
-                      label="Yellow"
-                    />
-                    <FormControlLabel
-                      value="mixed"
-                      control={<Radio />}
-                      label="Mixed"
-                    />
+                    {COLOR_OPTIONS.map((opt) => (
+                      <FormControlLabel
+                        key={opt.value}
+                        value={opt.value}
+                        control={<Radio />}
+                        label={opt.label}
+                      />
+                    ))}
                   </RadioGroup>
                 </FormControl>
               )}
               <FormControl>
-                <FormLabel id="tape-inch" style={{ color: "#000", textAlign:"center", fontFamily:"inherit", fontWeight:"bold" }}>
+                <FormLabel
+                  id="tape-inch"
+                  style={{
+                    color: "#000",
+                    textAlign: "center",
+                    fontFamily: "inherit",
+                    fontWeight: "bold",
+                  }}
+                >
                   Tape Width
                 </FormLabel>
                 <RadioGroup
@@ -106,66 +150,68 @@ export default function ProductDetails() {
                   value={selectedInchTape}
                   onChange={(e) => setSelectedInchTape(e.target.value)}
                 >
-                  <FormControlLabel
-                    value="1_inch"
-                    control={<Radio />}
-                    label="1 inch"
-                  />
-                  <FormControlLabel
-                    value="2_inch"
-                    control={<Radio />}
-                    label="2 inch"
-                  />
-                  <FormControlLabel
-                    value="3_inch"
-                    control={<Radio />}
-                    label="3 inch"
-                  />
-                  <FormControlLabel
-                    value="4_inch"
-                    control={<Radio />}
-                    label="4 inch"
-                  />
+                  {WIDTH_OPTIONS.map((opt) => (
+                    <FormControlLabel
+                      key={opt.value}
+                      value={opt.value}
+                      control={<Radio />}
+                      label={opt.label}
+                    />
+                  ))}
                 </RadioGroup>
               </FormControl>
-              <FormLabel style={{ color: "#000", textAlign:"center", fontFamily:"inherit", fontWeight:"bold" }} id="rolls">
+              <FormLabel
+                style={{
+                  color: "#000",
+                  textAlign: "center",
+                  fontFamily: "inherit",
+                  fontWeight: "bold",
+                }}
+                id="rolls"
+              >
                 Number of tape rolls in a box
               </FormLabel>
-              <Button variant="outlined" disabled style={{ color: "#000"}}>
+              <Button variant="outlined" disabled style={{ color: "#000" }}>
                 {calculatePieces(selectedInchTape)} Piece per box
               </Button>
               <FormControl>
-                <FormLabel id="tape-length" style={{ color: "#000", textAlign:"center", fontFamily:"inherit", fontWeight:"bold" }}>
+                <FormLabel
+                  id="tape-length"
+                  style={{
+                    color: "#000",
+                    textAlign: "center",
+                    fontFamily: "inherit",
+                    fontWeight: "bold",
+                  }}
+                >
                   Tape Length
                 </FormLabel>
                 <RadioGroup
                   row
                   aria-labelledby="tape-length"
-                  defaultValue="45_meter"
+                  value={selectedLength}
+                  onChange={(e) => setSelectedLength(e.target.value)}
                 >
-                  <FormControlLabel
-                    value="45_meter"
-                    control={<Radio />}
-                    label="45 Meter"
-                  />
-                  <FormControlLabel
-                    value="65_meter"
-                    control={<Radio />}
-                    label="65 Meter"
-                  />
-                  <FormControlLabel
-                    value="90_meter"
-                    control={<Radio />}
-                    label="90 Meter"
-                  />
-                  <FormControlLabel
-                    value="100_meter"
-                    control={<Radio />}
-                    label="100 Meter"
-                  />
+                  {LENGTH_OPTIONS.map((opt) => (
+                    <FormControlLabel
+                      key={opt.value}
+                      value={opt.value}
+                      control={<Radio />}
+                      label={opt.label}
+                    />
+                  ))}
                 </RadioGroup>
               </FormControl>
             </Stack>
+            <div className="text-center">
+              <button
+                className="btn"
+                onClick={() => handleAddToCart(product)}
+                id="create_btn"
+              >
+                <i className="ri-shopping-cart-2-fill" /> Add to Cart
+              </button>
+            </div>
           </div>
         </div>
       </div>
