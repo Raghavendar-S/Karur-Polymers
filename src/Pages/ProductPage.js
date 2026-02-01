@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from "../Components/Layout/Layout";
-import { ProductData } from "../SharedData";
+import { ProductData } from "../Repository/SharedData";
 import { useNavigate } from "react-router-dom";
 import './ProductPage.css';
 

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Layout from "../Components/Layout/Layout";
 import { useParams } from "react-router-dom";
-import { ProductData } from "../SharedData";
+import { ProductData } from "../Repository/SharedData";
 import "./ProductDetails.css";
 import Button from "@mui/material/Button";
 import Radio from "@mui/material/Radio";
