@@ -107,12 +107,7 @@ export default function ProductDetails() {
                 <FormControl>
                   <FormLabel
                     id="tape-color"
-                    style={{
-                      color: "#000",
-                      textAlign: "center",
-                      fontFamily: "inherit",
-                      fontWeight: "bold",
-                    }}
+                    className="form-label-bold"
                   >
                     Tape Color
                   </FormLabel>
@@ -135,12 +130,7 @@ export default function ProductDetails() {
               <FormControl>
                 <FormLabel
                   id="tape-inch"
-                  style={{
-                    color: "#000",
-                    textAlign: "center",
-                    fontFamily: "inherit",
-                    fontWeight: "bold",
-                  }}
+                  className="form-label-bold"
                 >
                   Tape Width
                 </FormLabel>
@@ -161,28 +151,18 @@ export default function ProductDetails() {
                 </RadioGroup>
               </FormControl>
               <FormLabel
-                style={{
-                  color: "#000",
-                  textAlign: "center",
-                  fontFamily: "inherit",
-                  fontWeight: "bold",
-                }}
+                className="form-label-bold"
                 id="rolls"
               >
                 Number of tape rolls in a box
               </FormLabel>
-              <Button variant="outlined" disabled style={{ color: "#000" }}>
+              <Button variant="outlined" disabled className="button-disabled-dark">
                 {calculatePieces(selectedInchTape)} Piece per box
               </Button>
               <FormControl>
                 <FormLabel
                   id="tape-length"
-                  style={{
-                    color: "#000",
-                    textAlign: "center",
-                    fontFamily: "inherit",
-                    fontWeight: "bold",
-                  }}
+                  className="form-label-bold"
                 >
                   Tape Length
                 </FormLabel>

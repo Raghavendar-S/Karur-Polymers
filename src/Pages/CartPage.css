@@ -70,8 +70,13 @@
   text-align: justify;
 }
 
-@media (width < 800px) {
+@media (width < 850px) {
   .single_product_cart_container {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+  }
+  .user_card{
     flex-wrap: wrap;
     justify-content: center;
     gap: 2rem;
@@ -90,4 +95,36 @@
   background-color: #e0e0e0 !important;
   color: #6b6b6b !important;
   border-color: #cfcfcf !important;
+}
+
+.form-input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 12px;
+  align-items: center;
+  width: 100%;
+}
+
+.save-details-btn {
+  margin-top: 16px;
+  align-self: center;
+}
+
+.clear-cart-btn {
+  margin-top: 12px;
+  background-color: #f44336;
+  color: #fff;
+}
+
+.form-label-dark {
+  color: #000;
+}
+
+.cart-summary-text {
+  margin-bottom: 0.75rem;
+}
+
+.cart-summary-total {
+  margin-top: 0.75rem;
 }

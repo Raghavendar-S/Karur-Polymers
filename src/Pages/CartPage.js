@@ -297,16 +297,7 @@ const CartPage = () => {
         <div className="user_card text-center">
           <div>
             <h4>Provide details to include on the pre-invoice</h4>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                gap: 8,
-                marginTop: 12,
-                alignItems: "center",
-                width: "100%",
-              }}
-            >
+            <div className="form-input-container">
               <TextField
                 label="Name"
                 size="small"
@@ -402,10 +393,7 @@ const CartPage = () => {
                 color="primary"
                 onClick={saveCustomer}
                 disabled={!isDirty || !isFormValid}
-                style={{
-                  marginTop: 16,
-                  alignSelf: "center",
-                }}
+                className="save-details-btn"
               >
                 {isDirty ? "Save details" : "Saved"}
               </Button>
@@ -420,15 +408,10 @@ const CartPage = () => {
             </h4>
             <h4>Lastly updated price date: {formattedDate || price_date}</h4>
             <button
-              className="btn"
+              className="btn clear-cart-btn"
               id="clear_cart_btn"
               onClick={clearCart}
               disabled={!user.cart?.length}
-              style={{
-                marginTop: 12,
-                backgroundColor: "#f44336",
-                color: "#fff",
-              }}
             >
               <i className="ri-delete-bin-line" /> Clear Cart
             </button>
@@ -480,7 +463,7 @@ const CartPage = () => {
                       <FormControl>
                         <FormLabel
                           id={`tape-color-${p.cartItemId}`}
-                          style={{ color: "#000" }}
+                          className="form-label-dark"
                         >
                           Tape Color
                         </FormLabel>
@@ -512,7 +495,7 @@ const CartPage = () => {
                     <FormControl>
                       <FormLabel
                         id={`tape-inch-${p.cartItemId}`}
-                        style={{ color: "#000" }}
+                        className="form-label-dark"
                       >
                         Tape Width
                       </FormLabel>
@@ -541,12 +524,12 @@ const CartPage = () => {
                   )}
 
                   <FormLabel
-                    style={{ color: "#000" }}
+                    className="form-label-dark"
                     id={`rolls-${p.cartItemId}`}
                   >
                     Number of tape rolls in a box
                   </FormLabel>
-                  <Button variant="outlined" disabled style={{ color: "#000" }}>
+                  <Button variant="outlined" disabled className="form-label-dark">
                     {calculatePieces(p.selectedInchTape)} Piece
                   </Button>
 
@@ -554,7 +537,7 @@ const CartPage = () => {
                     <FormControl>
                       <FormLabel
                         id={`tape-length-${p.cartItemId}`}
-                        style={{ color: "#000" }}
+                        className="form-label-dark"
                       >
                         Tape Length
                       </FormLabel>
@@ -584,7 +567,7 @@ const CartPage = () => {
 
                   <FormLabel
                     id={`quantity-${p.cartItemId}`}
-                    style={{ color: "#000" }}
+                    className="form-label-dark"
                   >
                     Box Quantity
                   </FormLabel>
@@ -612,10 +595,10 @@ const CartPage = () => {
         </div>
         <div className="admin_menu text-center checkout_card">
           <h2>Cart Summary</h2>
-          <p style={{ marginBottom: "0.75rem" }}>Total | Checkout | Payment</p>
+          <p className="cart-summary-text">Total | Checkout | Payment</p>
           <hr />
-          <h4 style={{ marginTop: "0.75rem" }}>Total : ₹{totalPrice()}</h4>
-          <h4 style={{ marginTop: "0.75rem" }}>
+          <h4 className="cart-summary-total">Total : ₹{totalPrice()}</h4>
+          <h4 className="cart-summary-total">
             Net Total : ₹{totalPrice() + totalPrice() * 0.18} (included GST)
           </h4>
           <button
