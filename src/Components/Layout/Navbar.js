@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom";
-import React from "react";
 import "./NavbarFooter.css";
+import Badge from "@mui/material/Badge";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { useUser } from "../../Context/UserProvider";
 
 export function Navbar() {
+  const { user } = useUser();
+
   return (
     <>
       <header className="navbar_header">
@@ -34,6 +38,14 @@ export function Navbar() {
               <a href="/#contact">
                 <i className="ri-contacts-book-line"></i> Contact
               </a>
+            </li>
+            <li>
+              <Link to="/cart">
+                <Badge badgeContent={user.cart?.length} color="primary">
+                  <ShoppingCartIcon />
+                  Cart
+                </Badge>
+              </Link>
             </li>
           </ul>
         </nav>
