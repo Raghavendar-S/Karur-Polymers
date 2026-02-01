@@ -1,7 +1,7 @@
-import color from "./Product Images/color.png";
-import transparent from "./Product Images/transparent.png";
-import brown from "./Product Images/brown.png";
-import printed from "./Product Images/printed.png";
+import color from "../Product Images/color.png";
+import transparent from "../Product Images/transparent.png";
+import brown from "../Product Images/brown.png";
+import printed from "../Product Images/printed.png";
 
 export const ProductData = [
   {
