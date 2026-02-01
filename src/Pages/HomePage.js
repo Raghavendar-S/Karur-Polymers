@@ -135,7 +135,7 @@ export default function HomePage() {
           </div>
         </div>
         <div className="choose__image">
-          <img src="../assets/home-page-2.png" alt="choose" />
+          <img src="../assets/home-page.png" alt="choose" />
         </div>
       </section>
 
