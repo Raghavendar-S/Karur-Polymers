@@ -22,7 +22,7 @@ export default function ProductDetails() {
   );
   const [selectedColor, setSelectedColor] = useState(null);
   const [selectedLength, setSelectedLength] = useState(LENGTH_OPTIONS[0].value);
-  const [, setUser] = useUser();
+  const { setUser } = useUser();
 
   const isColorProduct = product && product.name === "Color tape";
 
