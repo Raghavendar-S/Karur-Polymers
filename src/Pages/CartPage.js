@@ -18,7 +18,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import "./CartPage.css";
-import { WIDTH_OPTIONS, COLOR_OPTIONS, LENGTH_OPTIONS } from "../Repository/OptionData";
+import { WIDTH_OPTIONS, COLOR_OPTIONS, LENGTH_OPTIONS } from "../Repository/OptionsData";
 import toast from "react-hot-toast";
 
 const CartPage = () => {

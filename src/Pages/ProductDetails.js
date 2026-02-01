@@ -12,7 +12,7 @@ import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import { useUser } from "../Context/UserProvider";
 import toast from "react-hot-toast";
-import {WIDTH_OPTIONS, COLOR_OPTIONS, LENGTH_OPTIONS} from "../Repository/OptionData";
+import {WIDTH_OPTIONS, COLOR_OPTIONS, LENGTH_OPTIONS} from "../Repository/OptionsData";
 
 export default function ProductDetails() {
   const { id } = useParams();
