@@ -1,3 +1,7 @@
+.content{
+  min-height: 100vh;
+}
+
 .navbar_header {
   position: relative;
   top: 0;
@@ -158,6 +162,8 @@
   }
   #menu-bar:checked ~ .navbar {
     display: initial;
+    z-index: 100;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
   }
   .footer__nav {
     justify-content: center;
